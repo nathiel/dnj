@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>select your theme</title>
+
+<style type="text/css">
+
+/*custom font*/
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
+
+/*index styles*/
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+  v2.0 | 20110126
+  License: none (public domain)
+*/
+	
+html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, 	var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;}
+
+/*general*/
+body{background: #fff; font-family:Arial, Helvetica, sans-serif; color:#999; font-size:12px;padding:0;margin:0;}
+#header{width:100%; height:80px; line-height:50px; background: #fff;-moz-box-shadow: 10px 10px 8px #ccc;
+-webkit-box-shadow: 10px 10px 8px #ccc;box-shadow: 0px 0px 8px #ccc;margin-bottom:100px;}
+#header #logo{background:#fff;width:111px;line-height:80px;position:relative;left:50%;margin-left:-55.5px;padding:15px 0;}
+#header #logo p{margin:0px;color:#fff;line-height:20px;}
+#content-wrapper{width:800px;margin:auto; border:none;outline:none;}
+.theme-container{width:380px;float:left; margin:0 40px 40px 0;}
+.theme-container a{position:relative;}
+.theme-container a img{position:absolute;}
+.theme-container a .rollover{width:380px;height:300px;position:absolute;z-index:1;background:#fc7022;opacity:0;}
+.theme-container a .rollover .thumb-info{postion:absolute;width:auto;height:300px;line-height:300px;color:#ffffff;font-family: "Montserrat", sans-serif; font-size:15px; text-transform:uppercase; text-align:center;}
+.theme-container a .content{ padding:20px;border:1px solid #ddd; text-align:center;}
+.theme-container a .content .link-area{text-align:center;background: url(img/div.png) 5px 0 repeat-x; padding-top:20px;}
+.theme-container a .content .link-area a{font-family: "Montserrat", sans-serif; font-size:13px;color:#fc7022; text-decoration:none; text-transform:uppercase;}
+#footer{width:100%;margin-top:30px;color:#999; text-align:center;}
+
+/*typo*/
+h1,h2,h3,h4,h5,h6{font-family: "Montserrat", sans-serif; margin-bottom:15px;color:#333333;}
+	h1{font-size:35px;}
+	h2{font-size:30px;}
+	h3{font-size:26px;}
+	h4{font-size:22px;}
+	h5{font-size:18px;}
+	h6{font-size:14px;}
+h5.intro{color:#999; text-align:center;margin-bottom:40px;}
+p{margin:0 0 15px 0;padding:0;}
+a{color:#fc7022;text-decoration:none;}
+a:hover{color:#fc7022;}
+
+</style>
+
+<script type="text/javascript" src="../../../ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="../../../ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+<script type="text/javascript">
+
+$(window).load(function(){
+
+	var thumb = $('.thumb'),
+		hoverSpeed=500,
+		hoverEase='easeOutExpo',
+		hoverScreen,
+		thumbCaption; 
+
+	//hover actions
+	thumb.on({
+
+		 mouseenter: function () {
+			 
+			 thumbW = thumb.find('img').width();
+			 thumbH = thumb.find('img').height();
+			 
+
+			//get refrences needed
+		 	thumbCaption = $(this).attr('title');
+			
+			
+			//add rolloverscreen
+			if(!$(this).find('div').hasClass('rollover')) $(this).append('<div class="rollover"></div>');
+			
+			
+			//set it to the image size and fade in
+			hoverScreen = $('.rollover')
+			hoverScreen.css({width:thumbW,height:thumbH});
+
+			
+			//make sure caption is filled out
+			if (typeof thumbCaption !== 'undefined' && thumbCaption !== false && $(this).find(hoverScreen).is(':empty')) {
+				
+				//construct rollover & animate
+   				$(this).find(hoverScreen).append('<div class="thumb-info">'+thumbCaption+'</div>');
+				target = $(this).find(hoverScreen);
+				target.stop().animate({opacity:1},hoverSpeed, hoverEase);
+			}
+			
+		}, 
+		
+		  mouseleave: function () {
+		
+			//animate out
+			$(this).find(hoverScreen).animate({opacity:0},hoverSpeed,hoverEase,function(){
+	
+					//delete rollover
+				   $(this).remove();
+				
+			});
+			
+		
+		 }
+	
+	  });
+
+});
+
+//google analytics
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-36060950-1']);
+_gaq.push(['_trackPageview']);
+	
+(function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+</script>
+
+</head>
+
+
+<body>
+
+
+<div id="header">
+	<div id="logo">       
+        <img src="img/logo-header.png" alt=""/>
+    </div>
+</div>
+    
+<div id="content-wrapper">
+
+	<h5 class="intro">View Demo or Styling:</h5>
+
+	<!--theme-container-->
+	<div class="theme-container">
+    	<div style="height:300px;">
+            <a class="thumb" href="app/index.html" title="APP SHOWCASE">
+                <img src="img/theme-app.png" width="380" height="300" alt=""/>
+            </a>
+        </div>
+    </div>
+    
+    <!--theme-container-->
+	<div class="theme-container" style="margin-right:0px;">
+    	<div style="height:300px;">
+            <a class="thumb" href="gear/index.html" title="PRODCUT SHOWCASE">
+                <img src="img/theme-vartion.png" width="380" height="300" alt=""/>
+            </a>
+        </div>
+    </div>
+    
+    <!--theme-container-->
+	<div class="theme-container" style="margin-right:0px;">
+    	<div style="height:300px;">
+            <a class="thumb" href="app/styling.html" title="ENCORE STYLING">
+                <img src="img/theme-styling.png" width="380" height="300" alt=""/>
+            </a>
+        </div>
+    </div>
+    
+     
+    
+    <div id="footer">
+    	<p>© UDTHEMES.2012.<br/>All rights reserved. Theme by <a href="http://udthemes.com/">UDTHEMES</a>.</p>
+    </div>
+    
+</div>
+    
+   
+ 
+</body>
+</html>
